@@ -1,14 +1,113 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
-*, 
+/*------------------------------------- Layout */
+
+*,
 *::after,
 *::before {
     margin: 0;
     padding: 0;
 }
 
+html, body{
+    height: 100%;
+}
+
 body {
     box-sizing: border-box;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
+    color: var(--textColor);
 }
+
+/* VARIABLES */
+:root {
+    --footerHeight: 3rem;
+
+    --textColor: black;
+    --decorationColor: rgb(215, 153, 51);
+    --decorationTextColor: white;
+
+}
+
+.container {
+    padding: 0 200px;
+}
+
+.wrapper {
+    min-height: 100%;
+    margin-bottom: calc(-1 * var(--footerHeight));
+}
+
+.footer {
+    height: var(--footerHeight);
+    background-color: lightgray;
+}
+
+.push {
+    height: var(--footerHeight);
+}
+
+.menu {
+    border-bottom: 1px solid black;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    color: var(--textColor);
+    text-decoration: none;
+}
+
+.menu-part {
+    display: flex;
+}
+    .menu-part a {
+        padding: 1.25rem 2rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        border-bottom: 5px solid transparent;
+        border-top: 5px solid transparent;
+        transition: border-color .3s ease;
+    }
+        .menu-part a:hover {
+            border-bottom-color: var(--decorationColor);
+        }
+
+.content {
+    padding: 4rem 0;
+}
+
+/*------------------------------------- Index */
+
+.header {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.sub-header {
+    margin-bottom: 1rem;
+}
+
+.home-options {
+    display: flex;
+}
+    .home-options > * {margin-right: 1rem;}
+
+.button {
+    min-width: 6rem;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    text-align: center;
+    transition: all .2s ease;
+}
+    .button:hover {
+        background-color: var(--decorationColor);
+        cursor: pointer;
+    }
+        .button:hover a {
+            color: var(--decorationTextColor);
+        }

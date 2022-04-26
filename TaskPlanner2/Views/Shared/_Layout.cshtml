@@ -6,11 +6,33 @@
     <title>@ViewData["Title"]</title>
 
     <link href="~/css/styles.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+
 </head>
 <body>
-    <div>
-        @RenderBody()
-        Hello World
+
+    <div class="wrapper container">
+        <div class="menu">
+            <div class="menu-part">
+                <a hasp-controller="Home" asp-action="Index">Home</a>
+            </div>
+
+            <div class="menu-part">
+
+            </div>
+        </div>
+
+        <div class="content">
+            @RenderBody()
+        </div>
+
+        <div class="push"></div>
     </div>
+
+    <div class="footer">
+        @RenderSection("footer", false)
+    </div>
+
+    @RenderSection("scripts", false)
 </body>
 </html>
