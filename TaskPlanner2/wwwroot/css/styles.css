@@ -23,11 +23,10 @@ body {
 /* VARIABLES */
 :root {
     --footerHeight: 3rem;
-
     --textColor: black;
     --decorationColor: rgb(215, 153, 51);
     --decorationTextColor: white;
-
+    --inputBackgroundColor: #ededed;
 }
 
 .container {
@@ -60,6 +59,14 @@ a {
     text-decoration: none;
 }
 
+input {
+    border: none;
+}
+
+    input:focus-visible {
+        outline: none;
+    }
+
 .menu-part {
     display: flex;
 }
@@ -70,6 +77,7 @@ a {
         border-bottom: 5px solid transparent;
         border-top: 5px solid transparent;
         transition: border-color .3s ease;
+        text-transform: uppercase;
     }
         .menu-part a:hover {
             border-bottom-color: var(--decorationColor);
@@ -104,6 +112,7 @@ a {
     text-align: center;
     transition: all .2s ease;
     font-weight: 700;
+    display: inline;
 }
     .button:hover {
         background-color: var(--decorationColor);

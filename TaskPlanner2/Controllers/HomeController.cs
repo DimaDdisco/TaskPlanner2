@@ -10,7 +10,7 @@ namespace TaskPlanner2.Controllers
 {
     public class HomeController : Controller
     {
-        UnitOfWork DataBase { get; set; }
+        private UnitOfWork DataBase { get; set; }
         public HomeController(UnitOfWork dataBase)
         {
             DataBase = dataBase;

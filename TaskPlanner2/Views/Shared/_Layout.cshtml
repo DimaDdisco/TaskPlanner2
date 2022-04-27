@@ -14,11 +14,19 @@
     <div class="wrapper container">
         <div class="menu">
             <div class="menu-part">
-                <a hasp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Home" asp-action="Index">Home</a>
             </div>
 
             <div class="menu-part">
-
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Account" asp-action="Logout">Log Out</a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Signup">Sign Up</a>
+                    <a asp-controller="Account" asp-action="Login">Log In</a>
+                }
             </div>
         </div>
 

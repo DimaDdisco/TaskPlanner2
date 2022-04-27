@@ -1,0 +1,48 @@
+﻿@using TaskPlanner2.Models.ViewModel
+@model SignupViewModel
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+@section styles {
+    <link href="~/css/AccountControllerStyles.css" rel="stylesheet" />
+}
+
+<h1 class="header">Let's create a personal account for you</h1>
+
+<form asp-action="Signup" asp-controller="Account" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+    <div class="form-field">
+        <label asp-for="Login">Login:</label> <br />
+        <input asp-for="Login" class="textInput"/>
+        <span asp-validation-for="Login" />
+    </div> <br />
+
+    <div class="form-field">
+        <label asp-for="Email">Email address:</label> <br />
+        <input asp-for="Email" class="textInput"/>
+        <span asp-validation-for="Email" />
+    </div> <br />
+
+    <div class="form-field">
+        <label asp-for="Password">Password:</label> <br />
+        <input asp-for="Password" class="textInput"/>
+        <span asp-validation-for="Password" />
+    </div> <br />
+
+    <div class="form-field">
+        <label asp-for="ConfirmPassword">Confirm password:</label> <br />
+        <input asp-for="ConfirmPassword" class="textInput"/>
+        <span asp-validation-for="ConfirmPassword" />
+    </div> <br />
+    
+    <div class="form-field">
+        <input type="submit" value="Sign up" class="submitButton button" />
+    </div>
+</form>
+
+@section scripts {
+    <script src="~/js/undelineInputs.js"></script>
+} 
