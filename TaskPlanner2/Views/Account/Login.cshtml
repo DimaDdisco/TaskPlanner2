@@ -6,25 +6,25 @@
 }
 
 @section styles {
-    <link href="~/css/AccountControllerStyles.css" rel="stylesheet" />
+    <link href="~/css/AccountControllerStyles.css" rel="stylesheet" asp-append-version="true" />
 }
 
 <h1 class="header">Welcome back</h1>
 <h2 class="sub-header">Let's dive into work</h2>
 
-<form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+<form asp-action="Login" asp-controller="Account" asp-antiforgery="true">
     <div class="validation" asp-validation-summary="ModelOnly"></div>
 
     <div class="form-field">
         <label asp-for="Email">Email address:</label> <br />
-        <input asp-for="Email" class="textInput" />
-        <span asp-validation-for="Email" />
+        <input asp-for="Email" class="textInput" size="30" />
+        <span asp-validation-for="Email"  class="validation"/>
     </div> <br />
 
     <div class="form-field">
         <label asp-for="Password">Password:</label> <br />
-        <input asp-for="Password" class="textInput" />
-        <span asp-validation-for="Password" />
+        <input asp-for="Password" class="textInput" size="30" />
+        <span asp-validation-for="Password" class="validation"/>
     </div> <br />
 
     <div class="form-field">
@@ -34,4 +34,6 @@
 
 @section scripts {
     <script src="~/js/undelineInputs.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 } 

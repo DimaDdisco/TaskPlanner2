@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 using TaskPlanner2.Models.DataBase;
 using TaskPlanner2.Models.Repositories;
+using TaskPlanner2.Services.Abstract;
 
 namespace TaskPlanner2.Services
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private TaskPlannerContext dbContext { get; init; }
         public UnitOfWork(TaskPlannerContext context)
@@ -19,8 +20,8 @@ namespace TaskPlanner2.Services
         public void SaveChanges() => dbContext.SaveChanges();
 
         // Users 
-        private UserRepository _userRepository;
-        public UserRepository Users
+        protected UserRepository _userRepository;
+        public virtual UserRepository Users
         {
             get {
                 if (_userRepository == null)
@@ -30,8 +31,8 @@ namespace TaskPlanner2.Services
         }
 
         // Roles 
-        private RoleRepository _roleRepository;
-        public RoleRepository Roles
+        protected RoleRepository _roleRepository;
+        public virtual RoleRepository Roles
         {
             get
             {
@@ -42,8 +43,8 @@ namespace TaskPlanner2.Services
         }
 
         // Tasks 
-        private TaskRepository _taskRepository;
-        public TaskRepository Tasks
+        protected TaskRepository _taskRepository;
+        public virtual TaskRepository Tasks
         {
             get
             {
@@ -54,8 +55,8 @@ namespace TaskPlanner2.Services
         }
 
         // SubTasks 
-        private SubTaskRepository _subTaskRepository;
-        public SubTaskRepository subTasks
+        protected SubTaskRepository _subTaskRepository;
+        public virtual SubTaskRepository subTasks
         {
             get
             {

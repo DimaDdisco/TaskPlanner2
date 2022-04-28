@@ -21,6 +21,13 @@ namespace TaskPlanner2.Models.Repositories
             return await dbContext.Roles.FirstOrDefaultAsync(item => item.Id == id);
         }
 
+        // get actual role
+        public async Task<Role> Get(Roles role)
+        {
+            string roleString = role.ToString();
+            return await dbContext.Roles.FirstOrDefaultAsync(item => item.Name == roleString);
+        }
+
         // get all
         public async Task<IEnumerable<Role>> GetAll()
         {

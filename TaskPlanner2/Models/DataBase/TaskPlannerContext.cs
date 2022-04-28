@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using TaskPlanner2.Models;
+
 namespace TaskPlanner2.Models.DataBase
 {
     public class TaskPlannerContext : DbContext
@@ -23,9 +25,10 @@ namespace TaskPlanner2.Models.DataBase
         {
             modelBuilder.Entity<Role>().HasData(new Role[]
             {
-                new Role {Id = 1, Name = "Admin"},
-                new Role {Id = 2, Name = "BasicUser"}
-            });
+                new Role {Id = 1, Name = TaskPlanner2.Models.Roles.CommonUser.ToString()},
+                new Role {Id = 2, Name = TaskPlanner2.Models.Roles.Admin.ToString()},
+                new Role {Id = 3, Name = TaskPlanner2.Models.Roles.Guest.ToString()}
+            }); ;
         }
     }
 }

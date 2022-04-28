@@ -1,9 +1,10 @@
 ﻿
 
 .form-field {
-    margin: 0 0 2rem 1rem;
+    margin: 0 0 2.5rem 1rem;
     position: relative;
     display: inline-block;
+    position: relative;
 }
     .form-field::after {
         content: "";
@@ -40,3 +41,15 @@
     .submitButton:hover {
         color: var(--decorationTextColor)
     }
+
+.validation {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: -1.1rem;
+    font-size: .9rem;
+}
+
+.gloabal-validation {
+
+}

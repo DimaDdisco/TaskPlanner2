@@ -21,6 +21,12 @@ namespace TaskPlanner2.Models.Repositories
             return await dbContext.Users.FirstOrDefaultAsync(item => item.Id == id);
         }
 
+        // get user with email or login
+        public async Task<User> Get(string Login, string Email)
+        {
+            return await dbContext.Users.FirstOrDefaultAsync(user => user.Login == Login || user.Mail == Email);
+        }
+
         // get all
         public async Task<IEnumerable<User>> GetAll()
         {

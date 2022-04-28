@@ -13,11 +13,13 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using TaskPlanner2.Models.DataBase;
-using TaskPlanner2.Models.Repositories;
+using TaskPlanner2.Services;
+using TaskPlanner2.Services.Abstract;
+
 
 namespace TaskPlanner2
 {
-    public class Startup
+    public class Startup 
     {
         private IConfiguration Configuration { get; set; }
         public Startup(IConfiguration configuration)
@@ -32,7 +34,7 @@ namespace TaskPlanner2
             services.AddDbContext<TaskPlannerContext>(options => options.UseSqlServer(connection));
 
             // Unit of work (Supposed to be singleton, but Database is scoped)
-            services.AddScoped<TaskPlanner2.Services.UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // MVC 
             services.AddControllersWithViews();
@@ -43,6 +45,10 @@ namespace TaskPlanner2
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
+
+            // Authentication service
+            services.AddHttpContextAccessor();
+            services.AddScoped<IAuthentication, Authentication>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
