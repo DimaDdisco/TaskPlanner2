@@ -26,7 +26,7 @@ namespace TaskPlanner2.Services
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, userToAuthenticate.Login),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, userToAuthenticate.Role.Name)
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, userToAuthenticate.Role?.Name)
             };
 
             ClaimsIdentity id = new ClaimsIdentity(

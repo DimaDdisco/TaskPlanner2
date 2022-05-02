@@ -18,13 +18,24 @@ namespace TaskPlanner2.Models.Repositories
         // get one with id
         public async Task<User> Get(int id)
         {
-            return await dbContext.Users.FirstOrDefaultAsync(item => item.Id == id);
+            return await dbContext.Users
+                .FirstOrDefaultAsync(item => item.Id == id);
         }
 
         // get user with email or login
         public async Task<User> Get(string Login, string Email)
         {
-            return await dbContext.Users.FirstOrDefaultAsync(user => user.Login == Login || user.Mail == Email);
+            return await dbContext.Users
+                .Include(user => user.Role)
+                .FirstOrDefaultAsync(user => user.Login == Login || user.Mail == Email);
+        }
+
+        // get user with email
+        public async Task<User> Get(string Email)
+        {
+            return await dbContext.Users
+                .Include(user => user.Role)
+                .FirstOrDefaultAsync(user =>  user.Mail == Email);
         }
 
         // get all

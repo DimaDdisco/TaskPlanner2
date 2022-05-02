@@ -1,3 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Log Out";
 }
+
+@section styles {
+    <link href="~/css/AccountController.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<div class="form-center">
+    <h1 class="header">Are you sure you want to log out?</h1>
+
+    <form asp-action="Logout" asp-controller="Account" asp-antiforgery="true">
+        <div class="form-field">
+            <input type="submit" value="Yes, let me out" class="submit-button button" />
+        </div>
+    </form>
+</div>
+
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

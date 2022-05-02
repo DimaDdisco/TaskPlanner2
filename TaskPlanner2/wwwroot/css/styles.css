@@ -23,6 +23,7 @@ body {
 /* VARIABLES */
 :root {
     --footerHeight: 3rem;
+    --headerHeight: 5rem;
     --textColor: black;
     --decorationColor: rgb(215, 153, 51);
     --decorationTextColor: white;
@@ -30,7 +31,7 @@ body {
 }
 
 .container {
-    padding: 0 200px;
+    padding: 0 10rem;
 }
 
 .wrapper {
@@ -48,10 +49,18 @@ body {
 }
 
 .menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
     border-bottom: 1px solid black;
+    background-color: white;
+}
 
+.menu-content {
     display: flex;
     justify-content: space-between;
+    padding: 0 10rem;
 }
 
 a {
@@ -62,13 +71,13 @@ a {
 input {
     border: none;
 }
-
     input:focus-visible {
         outline: none;
     }
 
 .menu-part {
     display: flex;
+    height: var(--headerHeight);
 }
     .menu-part a {
         padding: 1.25rem 2rem;
@@ -83,9 +92,14 @@ input {
             border-bottom-color: var(--decorationColor);
         }
 
+.menu-placeholder {
+    height: var(--headerHeight);
+}
+
 .content {
     padding: 4rem 0;
 }
+
 
 /*------------------------------------- Index */
 
@@ -106,18 +120,22 @@ input {
 
 .button {
     min-width: 6rem;
-    padding: 1rem;
     border: 1px solid black;
+    padding: 1rem;
     border-radius: 0.5rem;
     text-align: center;
     transition: all .2s ease;
     font-weight: 700;
-    display: inline;
 }
     .button:hover {
         background-color: var(--decorationColor);
         cursor: pointer;
     }
-        .button:hover a {
-            color: var(--decorationTextColor);
-        }
+    .button a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .button:hover a {
+        color: var(--decorationTextColor);
+    }

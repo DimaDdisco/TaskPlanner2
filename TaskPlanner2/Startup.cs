@@ -58,11 +58,11 @@ namespace TaskPlanner2
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseAuthentication();
-            app.UseAuthorization();
-
             app.UseRouting();
             app.UseStaticFiles();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

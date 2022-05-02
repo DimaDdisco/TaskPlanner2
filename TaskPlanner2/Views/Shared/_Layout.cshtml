@@ -11,10 +11,13 @@
 </head>
 <body>
 
-    <div class="wrapper container">
-        <div class="menu">
+    <div class="menu">
+        <div class="menu-content">
             <div class="menu-part">
                 <a asp-controller="Home" asp-action="Index">Home</a>
+                @if (User.Identity.IsAuthenticated) {
+                    <a asp-controller="Tasks" asp-action="TaskList">Tasks</a>
+                }
             </div>
 
             <div class="menu-part">
@@ -28,6 +31,13 @@
                     <a asp-controller="Account" asp-action="Login">Log In</a>
                 }
             </div>
+        </div>
+    </div>
+
+
+    <div class="wrapper container">
+        <div class="menu-placeholder">
+
         </div>
 
         <div class="content">
@@ -43,5 +53,6 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @RenderSection("scripts", false)
+
 </body>
 </html>

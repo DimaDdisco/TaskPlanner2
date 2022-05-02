@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using TaskPlanner2.Services.Abstract;
 using TaskPlanner2.Models.ViewModel;
 using TaskPlanner2.Models.DataBase;
-using System.Security.Principal;
 
 namespace TaskPlanner2.Controllers
 {
@@ -34,15 +33,36 @@ namespace TaskPlanner2.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Logout()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel user)
+        [Authorize]
+        public IActionResult Logout(bool? exit)
         {
-            return View();
+            Authenticator.Logout();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel userView)
+        {
+            if(ModelState.IsValid)
+            {
+                User checkIfExist = await DataBase.Users.Get(userView.Email);
+                if(checkIfExist != null && checkIfExist.Password == userView.Password)
+                {
+                    Authenticator.Authenticate(checkIfExist);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", "Wrong password or email");
+            }
+
+            return View(userView);
         }
 
         [HttpPost]
@@ -67,12 +87,9 @@ namespace TaskPlanner2.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    if (checkIfExist.Mail == userView.Email) ModelState.AddModelError("Email", "Email already registered");
-                    else if (checkIfExist.Login == userView.Login) ModelState.AddModelError("Login", "Login already existed");
-                }
-
+                
+                if (checkIfExist.Login == userView.Login) ModelState.AddModelError("", "Login already existed");
+                else if (checkIfExist.Mail == userView.Email) ModelState.AddModelError("", "Email already registered");
             }
 
             return View(userView);

@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+@section styles {
+    <link href="~/css/TasksController.css" rel="stylesheet" />
+}
+
+<aside class="tasks-menu">
+
+    <div>Menu</div>
+
+    <div class="button">
+        <a>
+            Add New Task
+        </a>
+    </div>
+
+</aside>
+
+<ul class="tasks">
+
+    @*TASK*@
+    <li class="task">
+
+        @*TASK CONTENT*@
+        <div class="task-data">
+            <div class="task-content">
+                <h1>Title</h1>
+                <div class="description">
+                    This is task description <br />
+                    This is task description <br />
+                </div>
+            </div>
+
+            <div class="task-configuration">
+                <div class="button sub-button">
+                    <a>
+                        &#9881;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        @*SUB TASKS*@
+        <div class="sub-tasks">
+
+            <div class="add">
+                <div class="button sub-button">
+                    <a>
+                        &#65291;
+                    </a>
+                </div>
+            </div>
+
+            <ul class="sub-tasks-list">
+
+                @*SUB TASK*@
+                <li class="sub-task">
+                    <div class="sub-task-description">
+                        Sub task...
+                    </div>
+
+                    <div class="sub-task-configuration">
+                        <div class="button sub-button">
+                            <a>
+                                &#9881;
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                @*SUB TASK*@
+                <li class="sub-task">
+                    <div class="sub-task-description">
+                        Sub task...
+                    </div>
+
+                    <div class="sub-task-configuration">
+                        <div class="button sub-button">
+                            <a>
+                                &#9881;
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                @*SUB TASK*@
+                <li class="sub-task">
+                    <div class="sub-task-description">
+                        Sub task...
+                    </div>
+
+                    <div class="sub-task-configuration">
+                        <div class="button sub-button">
+                            <a>
+                                &#9881;
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </li>
+
+    @*TASK*@
+    <li class="task">
+
+        @*TASK CONTENT*@
+        <div class="task-data">
+            <div class="task-content">
+                <h1>Title</h1>
+                <div class="description">
+                    This is task description <br />
+                    This is task description <br />
+                </div>
+            </div>
+
+            <div class="task-configuration">
+                <div class="button sub-button">
+                    <a>
+                        &#9881;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        @*SUB TASKS*@
+        <div class="sub-tasks">
+
+            <div class="add">
+                <div class="button sub-button">
+                    <a>
+                        &#65291;
+                    </a>
+                </div>
+            </div>
+
+            <ul class="sub-tasks-list">
+
+                @*SUB TASK*@
+                <li class="sub-task">
+                    <div class="sub-task-description">
+                        Sub task...
+                    </div>
+
+                    <div class="sub-task-configuration">
+                        <div class="button sub-button">
+                            <a>
+                                &#9881;
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                @*SUB TASK*@
+                <li class="sub-task">
+                    <div class="sub-task-description">
+                        Sub task...
+                    </div>
+
+                    <div class="sub-task-configuration">
+                        <div class="button sub-button">
+                            <a>
+                                &#9881;
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </li>
+</ul>
