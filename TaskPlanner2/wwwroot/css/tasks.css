@@ -10,6 +10,7 @@
     width: var(--menuWidth);
     text-align: center;
     position: fixed;
+    z-index: 1;
 }
     .tasks-menu > *:not(:last-child) {
         margin-bottom: 1rem;
@@ -47,12 +48,6 @@
     border-bottom-left-radius: .5rem;
     width: 5rem;
     align-self: start;
-}
-
-.sub-button {
-    min-width: 1rem;
-    padding: .3rem;
-    font-size: 1.3rem;
 }
 
 .sub-tasks {
@@ -99,4 +94,62 @@
 .sub-task-configuration {
     justify-self: end;
     width: 5rem;
+}
+
+/* ----------------------- MODAL */
+
+.modal-overlay {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease-in-out;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-borders {
+    padding: 3rem;
+}
+
+.modal {
+    padding: 1rem 3rem;
+
+    background-color: white;
+    border: 1px solid black;
+    border-radius: .5rem;
+    box-shadow: 0 8px 32px 0 black;
+
+    position: relative;
+    top: -40rem;
+    transition: all .3s linear;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    top: 0;
+}
+
+/* ----------------------- DIFFERENT MODALS */
+
+.modal-add {
 }

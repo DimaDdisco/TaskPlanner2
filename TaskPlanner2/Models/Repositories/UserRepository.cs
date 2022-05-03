@@ -31,11 +31,20 @@ namespace TaskPlanner2.Models.Repositories
         }
 
         // get user with email
-        public async Task<User> Get(string Email)
+        public async Task<User> GetWithEmail(string Email)
         {
             return await dbContext.Users
                 .Include(user => user.Role)
                 .FirstOrDefaultAsync(user =>  user.Mail == Email);
+        }
+
+        // get user with login
+        public async Task<User> GetWithLogin(string Login)
+        {
+            return await dbContext.Users
+                .Include(user => user.Role)
+                .Include(user => user.Tasks)
+                .FirstOrDefaultAsync(user => user.Login == Login);
         }
 
         // get all

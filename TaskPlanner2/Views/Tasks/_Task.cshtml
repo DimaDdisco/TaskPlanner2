@@ -1,0 +1,39 @@
+﻿@using TaskPlanner2.Models.DataBase
+@model ToDoTask
+
+@*TASK*@
+<li class="task">
+
+    @*TASK CONTENT*@
+    <div class="task-data">
+        <div class="task-content">
+            <h1>@Model.Title</h1>
+            <div class="description">
+                @Model.Description
+            </div>
+        </div>
+
+        <div class="task-configuration">
+            <button class="button sub-button modalButton">
+                &#9881;
+            </button>
+        </div>
+    </div>
+
+    @*SUB TASKS*@
+    <div class="sub-tasks">
+
+        <div class="add">
+            <button class="button sub-button">
+                &#65291;
+            </button>
+        </div>
+
+        <ul class="sub-tasks-list">
+            @foreach (var subTask in Model.SubTasks)
+            {
+                await Html.RenderPartialAsync("_SubTask", subTask);
+            }
+        </ul>
+    </div>
+</li>

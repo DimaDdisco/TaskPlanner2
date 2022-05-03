@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
 
 using Microsoft.AspNetCore.Http;
@@ -44,6 +41,25 @@ namespace TaskPlanner2.Services
         {
             await HttpContextAccessor.HttpContext
                 .SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+
+        public string GetLogin()
+        {
+            ClaimsPrincipal CurrentUser = HttpContextAccessor.HttpContext.User;
+            if (CurrentUser.Identity.IsAuthenticated)
+            {
+                Claim Login = CurrentUser
+                    .FindFirst(ClaimsIdentity.DefaultNameClaimType);
+
+                if (Login != null)
+                {
+                    return Login.Value;
+                }
+
+                return "";
+            }
+
+            return "";
         }
     }
 }

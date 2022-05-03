@@ -50,6 +50,7 @@ body {
 
 .menu {
     position: fixed;
+    z-index: 3;
     left: 0;
     top: 0;
     width: 100%;
@@ -101,7 +102,7 @@ input {
 }
 
 
-/*------------------------------------- Index */
+/*------------------------------------- INDEX */
 
 .header {
     font-size: 2rem;
@@ -117,6 +118,8 @@ input {
     display: flex;
 }
     .home-options > * {margin-right: 1rem;}
+
+/*------------------------------------- BUTTON */
 
 .button {
     min-width: 6rem;
@@ -139,3 +142,27 @@ input {
     .button:hover a {
         color: var(--decorationTextColor);
     }
+
+.sub-button {
+    min-width: 1rem;
+    padding: .3rem;
+    font-size: 1.3rem;
+}
+
+button.button {
+    background-color: transparent;
+    font-size: 1rem;
+    width: 100%;
+}
+    button.button:hover {
+        color: var(--decorationTextColor);
+    }
+    button.button.sub-button {
+        min-width: 1rem;
+        padding: .3rem;
+        font-size: 1.3rem;
+    }
+
+button:focus-visible {
+    outline: none;
+}

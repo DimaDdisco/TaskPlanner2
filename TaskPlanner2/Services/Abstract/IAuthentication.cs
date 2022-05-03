@@ -11,5 +11,6 @@ namespace TaskPlanner2.Services.Abstract
     {
         void Authenticate(User userToAuthenticate);
         void Logout();
+        string GetLogin();
     }
 }

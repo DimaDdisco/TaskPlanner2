@@ -1,7 +1,6 @@
 ﻿
-
 .form-field {
-    margin: 0 0 2.5rem 1rem;
+    margin-left: 1rem;
     position: relative;
     display: inline-block;
     position: relative;
@@ -24,6 +23,10 @@
     .form-field label {
         font-size: 1.25rem;
     }
+
+form > .form-field:not(:last-of-type) {
+    margin-bottom: 2rem;
+}
 
 .text-input {
     font-size: 1.25rem;
@@ -63,4 +66,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.form-center .form-field {
+    margin-left: 0;
 }

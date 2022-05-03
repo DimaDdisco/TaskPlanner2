@@ -52,7 +52,7 @@ namespace TaskPlanner2.Controllers
         {
             if(ModelState.IsValid)
             {
-                User checkIfExist = await DataBase.Users.Get(userView.Email);
+                User checkIfExist = await DataBase.Users.GetWithEmail(userView.Email);
                 if(checkIfExist != null && checkIfExist.Password == userView.Password)
                 {
                     Authenticator.Authenticate(checkIfExist);

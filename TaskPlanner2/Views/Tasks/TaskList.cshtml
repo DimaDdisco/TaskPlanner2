@@ -1,176 +1,52 @@
-﻿
+﻿@using TaskPlanner2.Models.DataBase
+@using TaskPlanner2.Models.ViewModel
+@model User
 @{
     ViewData["Title"] = "Tasks";
 }
 
 @section styles {
-    <link href="~/css/TasksController.css" rel="stylesheet" />
+    <link href="~/css/tasks.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/form.css" rel="stylesheet" asp-append-version="true" />
 }
+
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal-borders">
+
+        <div class="modal modal-add" data-target="newTask">
+            @{ await Html.RenderPartialAsync("_AddNewTaskForm", new ToDoTaskViewModel { UserId = Model.Id }); }
+        </div>
+
+    </div>
+</div>
 
 <aside class="tasks-menu">
 
     <div>Menu</div>
 
-    <div class="button">
-        <a>
-            Add New Task
-        </a>
-    </div>
+    <button class="button modalButton" data-path="newTask">
+        Add New Task
+    </button>
 
 </aside>
 
-<ul class="tasks">
+@if (Model.Tasks.Count == 0)
+ {
+    <h2 class="sub-header">No tasks</h2>
+ }
+else
+{
+    <ul class="tasks">
+        @foreach (var task in Model.Tasks)
+         {
+            await Html.RenderPartialAsync("_Task", task);
+         }
+    </ul>
+}
 
-    @*TASK*@
-    <li class="task">
-
-        @*TASK CONTENT*@
-        <div class="task-data">
-            <div class="task-content">
-                <h1>Title</h1>
-                <div class="description">
-                    This is task description <br />
-                    This is task description <br />
-                </div>
-            </div>
-
-            <div class="task-configuration">
-                <div class="button sub-button">
-                    <a>
-                        &#9881;
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        @*SUB TASKS*@
-        <div class="sub-tasks">
-
-            <div class="add">
-                <div class="button sub-button">
-                    <a>
-                        &#65291;
-                    </a>
-                </div>
-            </div>
-
-            <ul class="sub-tasks-list">
-
-                @*SUB TASK*@
-                <li class="sub-task">
-                    <div class="sub-task-description">
-                        Sub task...
-                    </div>
-
-                    <div class="sub-task-configuration">
-                        <div class="button sub-button">
-                            <a>
-                                &#9881;
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-                @*SUB TASK*@
-                <li class="sub-task">
-                    <div class="sub-task-description">
-                        Sub task...
-                    </div>
-
-                    <div class="sub-task-configuration">
-                        <div class="button sub-button">
-                            <a>
-                                &#9881;
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-                @*SUB TASK*@
-                <li class="sub-task">
-                    <div class="sub-task-description">
-                        Sub task...
-                    </div>
-
-                    <div class="sub-task-configuration">
-                        <div class="button sub-button">
-                            <a>
-                                &#9881;
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-    </li>
-
-    @*TASK*@
-    <li class="task">
-
-        @*TASK CONTENT*@
-        <div class="task-data">
-            <div class="task-content">
-                <h1>Title</h1>
-                <div class="description">
-                    This is task description <br />
-                    This is task description <br />
-                </div>
-            </div>
-
-            <div class="task-configuration">
-                <div class="button sub-button">
-                    <a>
-                        &#9881;
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        @*SUB TASKS*@
-        <div class="sub-tasks">
-
-            <div class="add">
-                <div class="button sub-button">
-                    <a>
-                        &#65291;
-                    </a>
-                </div>
-            </div>
-
-            <ul class="sub-tasks-list">
-
-                @*SUB TASK*@
-                <li class="sub-task">
-                    <div class="sub-task-description">
-                        Sub task...
-                    </div>
-
-                    <div class="sub-task-configuration">
-                        <div class="button sub-button">
-                            <a>
-                                &#9881;
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-                @*SUB TASK*@
-                <li class="sub-task">
-                    <div class="sub-task-description">
-                        Sub task...
-                    </div>
-
-                    <div class="sub-task-configuration">
-                        <div class="button sub-button">
-                            <a>
-                                &#9881;
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-    </li>
-</ul>
+@section scripts {
+    <script src="~/js/modalWindows.js" asp-append-version="true"></script>
+    <script src="~/js/undelineInputs.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
