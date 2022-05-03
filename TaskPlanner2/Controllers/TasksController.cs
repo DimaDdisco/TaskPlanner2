@@ -33,17 +33,76 @@ namespace TaskPlanner2.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Add(ToDoTaskViewModel taskView)
+        public async Task<IActionResult> AddTask(ToDoTaskViewModel taskView)
         {
             if (ModelState.IsValid)
             {
                 User CurrentUser = await DataBase.Users.Get(taskView.UserId);
-                if(CurrentUser != null)
+                if(CurrentUser is not null)
                 {
                     ToDoTask toAdd = taskView.ToTask();
                     toAdd.User = CurrentUser;
 
                     DataBase.Tasks.Create(toAdd);
+                    DataBase.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("TaskList");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddSubTask(SubTaskViewModel subTaskView)
+        {
+            if (ModelState.IsValid)
+            {
+                ToDoTask CurrentToDoTask = await DataBase.Tasks.Get(subTaskView.TaskId);
+                if (CurrentToDoTask is not null)
+                {
+                    SubTask toAdd = subTaskView.ToSubTask();
+                    toAdd.Task = CurrentToDoTask;
+
+                    DataBase.SubTasks.Create(toAdd);
+                    DataBase.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("TaskList");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> ChangeTask(ToDoTaskViewModel taskView)
+        {
+            if (ModelState.IsValid)
+            {
+                ToDoTask task = await DataBase.Tasks.Get(taskView.TaskId);
+                if(task is not null)
+                {
+                    if(task.Title != taskView.Title || task.Description != taskView.Description)
+                    {
+                        task.Title = taskView.Title;
+                        task.Description = taskView.Description;
+                        DataBase.Tasks.Update(task);
+                        DataBase.SaveChanges();
+                    }
+                }
+            }
+
+            return RedirectToAction("TaskList");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> DeleteTask(ToDoTaskViewModel taskView)
+        {
+            if (ModelState.IsValid)
+            {
+                ToDoTask task = await DataBase.Tasks.Get(taskView.TaskId);
+                if (task is not null)
+                {
+                    DataBase.Tasks.Delete(task);
                     DataBase.SaveChanges();
                 }
             }

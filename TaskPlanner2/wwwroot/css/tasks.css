@@ -125,9 +125,11 @@
 
 .modal-borders {
     padding: 3rem;
+    position: relative;
 }
 
 .modal {
+    z-index: 5;
     padding: 1rem 3rem;
 
     background-color: white;
@@ -135,7 +137,7 @@
     border-radius: .5rem;
     box-shadow: 0 8px 32px 0 black;
 
-    position: relative;
+    position: absolute;
     top: -40rem;
     transition: all .3s linear;
 
@@ -143,13 +145,41 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transform: translate(-50%, -50%);
 }
 
 .modal.show {
     top: 0;
 }
 
-/* ----------------------- DIFFERENT MODALS */
+/* -----------------------  */
 
-.modal-add {
+.delete-form {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.delete-button {
+    background-color: var(--decorationColor);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: .5rem;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+
+    border-bottom-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: white;
 }

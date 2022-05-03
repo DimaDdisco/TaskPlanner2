@@ -18,6 +18,7 @@ namespace TaskPlanner2.Models.Repositories
         // get one with id
         public async Task<ToDoTask> Get(int id)
         {
+            await dbContext.SubTasks.LoadAsync();
             return await dbContext.Tasks.FirstOrDefaultAsync(item => item.Id == id);
         }
 
@@ -41,6 +42,11 @@ namespace TaskPlanner2.Models.Repositories
             {
                 dbContext.Tasks.Remove(toDelete);
             }
+        }
+
+        public void Delete(ToDoTask toDelete)
+        {
+            dbContext.Tasks.Remove(toDelete);
         }
 
         // update existing

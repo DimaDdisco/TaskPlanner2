@@ -28,6 +28,10 @@ form > .form-field:not(:last-of-type) {
     margin-bottom: 2rem;
 }
 
+.modal form > .form-field:not(:last-of-type) {
+    margin-bottom: 1rem;
+}
+
 .text-input {
     font-size: 1.25rem;
     margin-top: .25rem;

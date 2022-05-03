@@ -1,5 +1,6 @@
 ﻿@using TaskPlanner2.Models.DataBase
 @using TaskPlanner2.Models.ViewModel
+
 @model User
 @{
     ViewData["Title"] = "Tasks";
@@ -12,22 +13,18 @@
 
 <div class="modal-overlay" id="modal-overlay">
     <div class="modal-borders">
-
-        <div class="modal modal-add" data-target="newTask">
-            @{ await Html.RenderPartialAsync("_AddNewTaskForm", new ToDoTaskViewModel { UserId = Model.Id }); }
-        </div>
-
+        @{ await Html.RenderPartialAsync("_AddTaskForm", new ToDoTaskViewModel { UserId = Model.Id }); }
+        @{ await Html.RenderPartialAsync("_AddSubTaskForm", new SubTaskViewModel { UserId = Model.Id }); }
+        @{ await Html.RenderPartialAsync("_ChangeTaskForm", new ToDoTaskViewModel { UserId = Model.Id }); }
     </div>
 </div>
 
 <aside class="tasks-menu">
-
     <div>Menu</div>
 
-    <button class="button modalButton" data-path="newTask">
+    <button class="button modal-AddTask" modal-path="newTask">
         Add New Task
     </button>
-
 </aside>
 
 @if (Model.Tasks.Count == 0)

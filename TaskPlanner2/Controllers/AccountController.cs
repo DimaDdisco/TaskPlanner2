@@ -53,7 +53,7 @@ namespace TaskPlanner2.Controllers
             if(ModelState.IsValid)
             {
                 User checkIfExist = await DataBase.Users.GetWithEmail(userView.Email);
-                if(checkIfExist != null && checkIfExist.Password == userView.Password)
+                if(checkIfExist is not null && checkIfExist.Password == userView.Password)
                 {
                     Authenticator.Authenticate(checkIfExist);
 
@@ -71,10 +71,10 @@ namespace TaskPlanner2.Controllers
             if (ModelState.IsValid)
             {
                 User checkIfExist = await DataBase.Users.Get(userView.Login, userView.Email);
-                if(checkIfExist == null)
+                if(checkIfExist is null)
                 {
                     Role userRole = await DataBase.Roles.Get(Models.Roles.CommonUser);
-                    if (userRole == null)
+                    if (userRole is null)
                         throw new Exception("Role not found");
 
                     User toAdd = userView.ToUser();

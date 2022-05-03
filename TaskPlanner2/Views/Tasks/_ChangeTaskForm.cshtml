@@ -1,0 +1,42 @@
+﻿@using TaskPlanner2.Models.ViewModel
+@model ToDoTaskViewModel
+
+<div class="modal modal-add" data-target="changeTask">
+    <h1 class="header">
+        Change Task
+    </h1>
+
+    <form asp-controller="Tasks" asp-action="ChangeTask" asp-antiforgery="true" class="form-center">
+        <input asp-for="UserId" type="hidden" />
+        <input asp-for="TaskId" type="hidden" class="id" />
+
+        <div class="form-field">
+            <label asp-for="Title">Title:</label> <br />
+            <input asp-for="Title" class="text-input" size="30" />
+            <span asp-validation-for="Title" class="validation" />
+        </div> <br />
+
+        <div class="form-field">
+            <label asp-for="Description">Description:</label> <br />
+            <input asp-for="Description" class="text-input" size="30" />
+            <span asp-validation-for="Description" class="validation" />
+        </div> <br />
+
+        <div class="form-field">
+            <input type="submit" value="Change" class="submit-button button" />
+        </div>
+        <div class="gloabal-validation" asp-validation-summary="ModelOnly"></div>
+    </form>
+
+
+    <form asp-controller="Tasks" asp-action="DeleteTask" asp-antiforgery="true" class="form-center delete-form">
+        <input asp-for="UserId" type="hidden" />
+        <input asp-for="TaskId" type="hidden" class="id" />
+
+        <div class="form-field">
+            <input type="submit" value="Delete" class="delete-button" />
+        </div>
+
+        <div class="gloabal-validation" asp-validation-summary="ModelOnly"></div>
+    </form>
+</div>

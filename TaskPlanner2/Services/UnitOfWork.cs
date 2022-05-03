@@ -56,7 +56,7 @@ namespace TaskPlanner2.Services
 
         // SubTasks 
         protected SubTaskRepository _subTaskRepository;
-        public virtual SubTaskRepository subTasks
+        public virtual SubTaskRepository SubTasks
         {
             get
             {

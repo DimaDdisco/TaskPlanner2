@@ -13,6 +13,6 @@ namespace TaskPlanner2.Services.Abstract
         public UserRepository Users { get; }
         public RoleRepository Roles { get; }
         public TaskRepository Tasks { get; }
-        public SubTaskRepository subTasks { get; }
+        public SubTaskRepository SubTasks { get; }
     }
 }

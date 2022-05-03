@@ -6,15 +6,16 @@
 
     @*TASK CONTENT*@
     <div class="task-data">
-        <div class="task-content">
-            <h1>@Model.Title</h1>
+        <div class="task-content" data-target="task-@Model.Id">
+            <span class="hidden id">@Model.Id</span>
+            <h1 class="title">@Model.Title</h1>
             <div class="description">
                 @Model.Description
             </div>
         </div>
 
         <div class="task-configuration">
-            <button class="button sub-button modalButton">
+            <button class="button sub-button modal-ChangeTask" modal-path="changeTask" data-path="task-@Model.Id">
                 &#9881;
             </button>
         </div>
@@ -24,7 +25,7 @@
     <div class="sub-tasks">
 
         <div class="add">
-            <button class="button sub-button">
+            <button class="button sub-button modal-AddSubTask" modal-path="newSubTask" data-path="task-@Model.Id">
                 &#65291;
             </button>
         </div>

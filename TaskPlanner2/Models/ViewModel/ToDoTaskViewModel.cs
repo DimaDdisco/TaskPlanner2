@@ -8,7 +8,8 @@ namespace TaskPlanner2.Models.ViewModel
         [Required]
         public int UserId { get; set; }
 
-        [Required]
+        public int TaskId { get; set; }
+
         [MaxLength(50)]
         public string Title { get; set; }
 
@@ -23,7 +24,8 @@ namespace TaskPlanner2.Models.ViewModel
             return new ToDoTask
             {
                 Title = viewModel.Title,
-                Description = viewModel.Description
+                Description = viewModel.Description,
+                Id = viewModel.TaskId
             };
         }
     }

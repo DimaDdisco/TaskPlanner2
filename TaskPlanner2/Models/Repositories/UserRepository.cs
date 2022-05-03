@@ -41,9 +41,10 @@ namespace TaskPlanner2.Models.Repositories
         // get user with login
         public async Task<User> GetWithLogin(string Login)
         {
+            await dbContext.SubTasks.LoadAsync();
             return await dbContext.Users
                 .Include(user => user.Role)
-                .Include(user => user.Tasks)
+                .Include(tasks => tasks.Tasks)
                 .FirstOrDefaultAsync(user => user.Login == Login);
         }
 

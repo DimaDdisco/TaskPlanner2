@@ -1,0 +1,29 @@
+﻿@using TaskPlanner2.Models.ViewModel
+@model ToDoTaskViewModel
+
+<div class="modal modal-add" data-target="newTask">
+    <h1 class="header">
+        New Task
+    </h1>
+
+    <form asp-controller="Tasks" asp-action="AddTask" asp-antiforgery="true" class="form-center">
+        <input asp-for="UserId" type="hidden" />
+
+        <div class="form-field">
+            <label asp-for="Title">Title:</label> <br />
+            <input asp-for="Title" class="text-input" size="30" />
+            <span asp-validation-for="Title" class="validation" />
+        </div> <br />
+
+        <div class="form-field">
+            <label asp-for="Description">Description:</label> <br />
+            <input asp-for="Description" class="text-input" size="30" />
+            <span asp-validation-for="Description" class="validation" />
+        </div> <br />
+
+        <div class="form-field">
+            <input type="submit" value="Add Task" class="submit-button button" />
+        </div>
+        <div class="gloabal-validation" asp-validation-summary="ModelOnly"></div>
+    </form>
+</div>
