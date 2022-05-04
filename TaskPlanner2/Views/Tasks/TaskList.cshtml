@@ -16,6 +16,7 @@
         @{ await Html.RenderPartialAsync("_AddTaskForm", new ToDoTaskViewModel { UserId = Model.Id }); }
         @{ await Html.RenderPartialAsync("_AddSubTaskForm", new SubTaskViewModel { UserId = Model.Id }); }
         @{ await Html.RenderPartialAsync("_ChangeTaskForm", new ToDoTaskViewModel { UserId = Model.Id }); }
+        @{ await Html.RenderPartialAsync("_ChangeSubTaskForm", new SubTaskViewModel { UserId = Model.Id }); }
     </div>
 </div>
 

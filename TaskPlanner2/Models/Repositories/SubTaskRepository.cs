@@ -43,6 +43,11 @@ namespace TaskPlanner2.Models.Repositories
             }
         }
 
+        public void Delete(SubTask toDelete)
+        {
+            dbContext.SubTasks.Remove(toDelete);
+        }
+
         // update existing
         public void Update(SubTask item)
         {

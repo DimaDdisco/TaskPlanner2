@@ -56,6 +56,27 @@ changeTask.forEach((button) => {
     });
 });
 
+// CHANGE SUBTASK 
+let changeSubTask = document.querySelectorAll(".modal-ChangeSubTask");
+changeSubTask.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        let modal = getModal(e.currentTarget);
+        clearModal(modal);
+        openModals(modal);
+
+        let data = getData(e.currentTarget);
+        modal.querySelector("#Description").value = data.innerText;
+
+        modal.querySelectorAll(".id").forEach((TaskId) => {
+            TaskId.value = data.querySelector(".id").innerText;
+        });
+
+        modal.querySelectorAll(".subTaskId").forEach((TaskId) => {
+            TaskId.value = data.querySelector(".subTaskId").innerText;
+        });
+    });
+});
+
 // ADD SUBTASK
 let addSubTask = document.querySelectorAll(".modal-AddSubTask");
 addSubTask.forEach((button) => {

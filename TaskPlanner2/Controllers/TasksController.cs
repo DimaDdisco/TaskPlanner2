@@ -12,6 +12,7 @@ using TaskPlanner2.Models.ViewModel;
 
 namespace TaskPlanner2.Controllers
 {
+    [Authorize]
     public class TasksController : Controller
     {
         private IUnitOfWork DataBase { get; set; }
@@ -23,7 +24,6 @@ namespace TaskPlanner2.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> TaskList()
         {
             string Login = Authenticator.GetLogin();
@@ -32,7 +32,6 @@ namespace TaskPlanner2.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> AddTask(ToDoTaskViewModel taskView)
         {
             if (ModelState.IsValid)
@@ -52,7 +51,6 @@ namespace TaskPlanner2.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> AddSubTask(SubTaskViewModel subTaskView)
         {
             if (ModelState.IsValid)
@@ -72,7 +70,6 @@ namespace TaskPlanner2.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> ChangeTask(ToDoTaskViewModel taskView)
         {
             if (ModelState.IsValid)
@@ -94,7 +91,6 @@ namespace TaskPlanner2.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> DeleteTask(ToDoTaskViewModel taskView)
         {
             if (ModelState.IsValid)
@@ -102,7 +98,46 @@ namespace TaskPlanner2.Controllers
                 ToDoTask task = await DataBase.Tasks.Get(taskView.TaskId);
                 if (task is not null)
                 {
+                    foreach (var subTask in task.SubTasks)
+                        DataBase.SubTasks.Delete(subTask);
+
                     DataBase.Tasks.Delete(task);
+                    DataBase.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("TaskList");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeSubTask(SubTaskViewModel subTaskView)
+        {
+            if (ModelState.IsValid)
+            {
+                SubTask subTask = await DataBase.SubTasks.Get(subTaskView.SubTaskId);
+                if(subTask is not null)
+                {
+                    if(subTask.Description != subTaskView.Description)
+                    {
+                        subTask.Description = subTaskView.Description;
+                        DataBase.SubTasks.Update(subTask);
+                        DataBase.SaveChanges();
+                    }
+                }
+            }
+
+            return RedirectToAction("TaskList");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteSubTask(SubTaskViewModel subTaskView)
+        {
+            if (ModelState.IsValid)
+            {
+                SubTask subTask = await DataBase.SubTasks.Get(subTaskView.SubTaskId);
+                if (subTask is not null)
+                {
+                    DataBase.SubTasks.Delete(subTask);
                     DataBase.SaveChanges();
                 }
             }

@@ -2,12 +2,14 @@
 @model SubTask
 
 <li class="sub-task">
-    <div class="sub-task-description">
+    <div class="sub-task-description" data-target="st-@Model.Id">
+        <span class="hidden id">@Model.Task.Id</span>
+        <span class="hidden subTaskId">@Model.Id</span>
         @Model.Description
     </div>
 
     <div class="sub-task-configuration">
-        <button class="button sub-button">
+        <button class="button sub-button modal-ChangeSubTask" modal-path="changeSubTask" data-path="st-@Model.Id">
             &#9881;
         </button>
     </div>

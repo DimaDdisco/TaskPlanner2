@@ -11,7 +11,8 @@ namespace TaskPlanner2.Models.ViewModel
         [Required]
         public int TaskId { get; set; }
 
-        [Required]
+        public int SubTaskId { get; set; }
+
         [MaxLength(100)]
         public string Description { get; set; }
     }
@@ -22,7 +23,8 @@ namespace TaskPlanner2.Models.ViewModel
         {
             return new SubTask
             {
-                Description = viewModel.Description
+                Description = viewModel.Description,
+                Id = viewModel.SubTaskId
             };
         }
     }
